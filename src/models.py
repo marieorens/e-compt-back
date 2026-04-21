@@ -6,6 +6,7 @@ class User(db.Model):
     name = db.Column(db.String(100))
     identifier = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(200))
+    role = db.Column(db.String(20), default='user')
 
 class Meter(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -20,3 +21,9 @@ class Transaction(db.Model):
     amount = db.Column(db.Float)
     type = db.Column(db.String(20))
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+
+class Setting(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    key = db.Column(db.String(50), unique=True, nullable=False)
+    value = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.String(200))
